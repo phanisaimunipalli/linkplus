@@ -166,7 +166,7 @@ const Home: NextPage = () => {
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Boost Your LinkedIn Presence these Headlines!
+                  Boost Your LinkedIn Presence with these Headlines!
                 </h2>
               </div>
               <div className="space-y-8 whitespace-pre-wrap flex flex-col items-center justify-center max-w-xl mx-auto">
