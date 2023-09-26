@@ -12,9 +12,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         defer: false,
         appendTo: "head",
         nonce: undefined,
-      }}>
+      }}
+    >
       <Component {...pageProps} />
-      </GoogleReCaptchaProvider>
+      <Analytics />
+    </GoogleReCaptchaProvider>
   );
 }
 
