@@ -13,6 +13,7 @@ function classNames(...classes: string[]) {
 export type VibeType =
   | "Software Engineer"
   | "Product Manager"
+  | "Electrical Engineer"
   | "Sales Engineer"
   | "Technical Product Manager"
   | "Cloud Solutions Engineer"
@@ -27,6 +28,7 @@ interface DropDownProps {
 let vibes: VibeType[] = [
   "Software Engineer",
   "Product Manager",
+  "Electrical Engineer",
   "Sales Engineer",
   "Technical Product Manager",
   "Cloud Solutions Engineer",
