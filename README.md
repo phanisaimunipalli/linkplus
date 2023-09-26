@@ -1,4 +1,4 @@
-# [GPTEssay.com](https://www.gptessay.com/)
+# [LinkPlus]()
 
 This project generates Twitter bios for you using AI.
 
