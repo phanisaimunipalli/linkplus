@@ -6,21 +6,18 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <meta
-            name="description"
-            content="Generate an essay in seconds."
-          />
+          <meta name="description" content="Generate an essay in seconds." />
           <meta property="og:site_name" content="gptessay.com" />
           <meta
             property="og:description"
             content="Generate an essay seconds."
           />
-          <meta property="og:title" content="Essay Generator" />
+          <meta property="og:title" content="LinkPlus" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Essay Generator" />
+          <meta name="twitter:title" content="Link Plus" />
           <meta
             name="twitter:description"
-            content="Generate an essay in seconds."
+            content="Boost your LinkedIn Presence in seconds!"
           />
           <meta
             property="og:image"
