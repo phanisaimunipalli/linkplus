@@ -70,7 +70,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>GPT Essay Writer</title>
+        <title>LinkPlus</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
           <p>Star on GitHub</p>
         </a>
         <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900">
-          Write an essay on any topic using chatGPT
+          Write an linkedin headline on my role using chatGPT
         </h1>
         <p className="text-slate-500 mt-5"></p>
         <div className="max-w-xl w-full">
@@ -154,7 +154,7 @@ const Home: NextPage = () => {
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Your generated essay
+                  Your generated headline
                 </h2>
               </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
@@ -167,7 +167,7 @@ const Home: NextPage = () => {
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
                           navigator.clipboard.writeText(generatedBio);
-                          toast("Essay copied to clipboard", {
+                          toast("Headline copied to clipboard", {
                             icon: "✂️",
                           });
                         }}

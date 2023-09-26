@@ -6,15 +6,15 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <meta name="description" content="Generate an essay in seconds." />
-          <meta property="og:site_name" content="gptessay.com" />
+          <meta name="description" content="Boost your LinkedIn in seconds!." />
+          <meta property="og:site_name" content="linkplus.vercel.app" />
           <meta
             property="og:description"
-            content="Generate an essay seconds."
+            content="Boost your LinkedIn in seconds!."
           />
           <meta property="og:title" content="LinkPlus" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Link Plus" />
+          <meta name="twitter:title" content="LinkPlus" />
           <meta
             name="twitter:description"
             content="Boost your LinkedIn Presence in seconds!"

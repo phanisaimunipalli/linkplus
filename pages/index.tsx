@@ -179,7 +179,7 @@ const Home: NextPage = () => {
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
                           navigator.clipboard.writeText(generatedBio);
-                          toast("Essay copied to clipboard", {
+                          toast("Headline copied to clipboard", {
                             icon: "✂️",
                           });
                         }}
