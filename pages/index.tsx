@@ -75,7 +75,7 @@ const Home: NextPage = () => {
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
         <title>LinkPlus</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/charge.png" />
       </Head>
 
       <Header />
@@ -89,11 +89,11 @@ const Home: NextPage = () => {
           <Github />
           <p>Star on GitHub</p>
         </a> */}
-        <h1 className="sm:text-6xl w-full text-4xl font-bold text-slate-900 mt-6">
+        {/* <h1 className="sm:text-6xl w-full text-4xl font-bold text-slate-900 mt-6">
           LinkPlus.
-        </h1>
-        <h1 className="sm:text-6xl w-full text-4xl font-bold text-slate-900 mt-6">
-          Be Seen. Be Connected.
+        </h1> */}
+        <h1 className="sm:text-6xl w-full text-4xl font-bold text-slate-900 mt-5">
+          Supercharge Your LinkedIn in Seconds!
         </h1>
 
         <p className="text-2xl text-slate-900 font-medium mt-10">

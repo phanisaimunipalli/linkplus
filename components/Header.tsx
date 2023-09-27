@@ -4,11 +4,11 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header className="flex justify-between items-center w-full mt-5 border-b-2 pb-7 sm:px-4 px-2">
-      <Link href="/" className="flex space-x-3">
+      <Link href="/" className="flex space-x-1 space-y-1">
         <Image
           alt="header text"
-          src="/linkicon.png"
-          className="sm:w-12 sm:h-12 w-8 h-8"
+          src="/charge.png"
+          className="sm:w-12 sm:h-12 w-8 h-5"
           width={32}
           height={32}
         />
@@ -30,6 +30,7 @@ export default function Header() {
           height={28}
         />
       </a> */}
+      {/* <p>aaa</p> */}
     </header>
   );
 }

@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/linkpluslogo.png" />
           <meta name="description" content="Boost your LinkedIn in seconds!." />
           <meta property="og:site_name" content="linkplus.vercel.app" />
           <meta
