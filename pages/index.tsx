@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import DropDown, { VibeType } from "../components/DropDown";
+import FeatureDropDown, { FeatureType } from "../components/FeatureDropDown";
 import Footer from "../components/Footer";
 import Github from "../components/GitHub";
 import Header from "../components/Header";
@@ -14,7 +15,9 @@ const Home: NextPage = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Software Engineer");
+  const [prompt, setPrompt] = useState<String>("");
+  const [vibe, setVibe] = useState<VibeType>("Target role:");
+  const [feature, setFeature] = useState<FeatureType>("Select the Feature");
   const [generatedBios, setGeneratedBios] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -29,14 +32,51 @@ const Home: NextPage = () => {
   //   bio.slice(-1) === "." ? "" : "."
   // }`;
 
-  const prompt = `Craft two attention-grabbing LinkedIn headlines for someone in the role of ${vibe} clearly labeled "1." and "2.". The headline should reflect their expertise, accomplishments, and the value they bring to their industry. Ensure that the headline is concise and impactful, with a maximum of 200 characters and base it on this bio: ${bio}${
+  // const prompt = `Write 2 attention-grabbing LinkedIn ${feature}s for someone in the role of ${vibe} clearly labeled "1." and "2.". It should reflect their expertise, accomplishments, and the value they bring to target industry. Ensure it is creative and impactful, with a maximum of 220 characters and base it on this description: ${bio}${
+  //   bio.slice(-1) === "." ? "" : "."
+  // }`;
+
+  const headline_prompt = `Act as a LinkedIn expert to enhance my LinkedIn presence. My goal is to attract recruiters and stand out in their search to land my target role of ${vibe}. Craft 2 creative and effective LinkedIn headlines with exactly 200 characters each clearly labeled "1." and "2." that incorporates relevant keywords and showcases my unique skills and experiences based on my bio: ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
+  const conn_prompt = `You are reaching out to connect with a professional on LinkedIn who holds the position: ${vibe} you aspire to. Your goal is to establish a meaningful connection with a conversational tone, write 2 personalized connection request messages with maximum of 250 characters each clearly labeled "1." and "2." that not only introduces yourself but also highlights why you're interested in connecting with them. You can reference their LinkedIn headline or experience description here: ${bio}${
+    bio.slice(-1) === "." ? "" : "."
+  }`;
+
+  useEffect(() => {
+    if (feature === "LinkedIn Headline") {
+      setPrompt(headline_prompt);
+    } else {
+      setPrompt(conn_prompt);
+    }
+  }, [feature, bio, vibe]);
+
   const generateBio = async (e: any) => {
     e.preventDefault();
+
+    if (feature === "Select the Feature") {
+      toast("Please select the feature you want!", {
+        icon: "🛑",
+      });
+      return;
+    }
+    if (vibe == "Target role:") {
+      toast("Please select your target role!", {
+        icon: "🛑",
+      });
+      return;
+    }
+    if (!bio) {
+      toast("Please enter description!", {
+        icon: "🛑",
+      });
+      return;
+    }
+
     setGeneratedBios("");
     setLoading(true);
+
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -96,18 +136,33 @@ const Home: NextPage = () => {
           Supercharge Your LinkedIn in Seconds!
         </h1>
 
-        <p className="text-2xl text-slate-900 font-medium mt-10">
+        {/* <p className="text-2xl text-slate-900 font-medium mt-10">
           LinkedIn Headline Generator
-        </p>
+        </p> */}
         <p className="sm:text-4xl text-2xl text-slate-700 font-medium mt-10"></p>
         <div className="max-w-xl w-full">
-          <div className="flex mb-5 items-center space-x-3">
+          {/* Feature  - removed flex from this className*/}
+          <div className="mb-5 items-center space-x-3">
+            {/* <Image src="/1-black.png" width={30} height={30} alt="1 icon" /> */}
+            {/* <p className="text-center font-medium">Select feature</p> */}
+            <div className="block">
+              <FeatureDropDown
+                feature={feature}
+                setFeature={(newFeature) => setFeature(newFeature)}
+              />
+            </div>
+          </div>
+
+          {/* Target role */}
+          <div className="flex my-8 items-center space-x-3">
             <Image src="/1-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your role.</p>
+            <p className="text-left font-medium">Select target role.</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
           </div>
+
+          {/* description */}
           <div className="flex mt-10 items-center space-x-3">
             <Image
               src="/2-black.png"
@@ -117,10 +172,10 @@ const Home: NextPage = () => {
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              Enter about you{" "}
+              Description{" "}
               <span className="text-slate-500">
-                (or write a few sentences explaining your skill set and
-                experience)
+                (For Headline: Write about your skill set and experience | For
+                Connection Request: Copy paste their headline)
               </span>
               .
             </p>
@@ -133,6 +188,7 @@ const Home: NextPage = () => {
             placeholder={
               "Eg: Machine Learning enthusiast with 2+ years of experience in eCommerce."
             }
+            required
           />
 
           {!loading && (
@@ -140,7 +196,7 @@ const Home: NextPage = () => {
               className="bg-black rounded-xl text-white font-bold px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
-              Create Headline &rarr;
+              Create now &rarr;
             </button>
           )}
           {loading && (
@@ -155,7 +211,7 @@ const Home: NextPage = () => {
         <Toaster
           position="top-center"
           reverseOrder={false}
-          toastOptions={{ duration: 2000 }}
+          toastOptions={{ duration: 3000 }}
         />
         <hr className="h-px bg-gray-700 border-1 dark:bg-gray-700" />
         <div className="space-y-10 my-10">
@@ -166,7 +222,7 @@ const Home: NextPage = () => {
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Boost Your LinkedIn Presence with these Headlines!
+                  Boost Your LinkedIn Presence!
                 </h2>
               </div>
               <div className="space-y-8 whitespace-pre-wrap flex flex-col items-center justify-center max-w-xl mx-auto">
@@ -179,7 +235,7 @@ const Home: NextPage = () => {
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
                           navigator.clipboard.writeText(generatedBio);
-                          toast("Headline copied to clipboard", {
+                          toast("Copied to clipboard", {
                             icon: "✂️",
                           });
                         }}
