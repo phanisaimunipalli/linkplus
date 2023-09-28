@@ -132,7 +132,7 @@ const Home: NextPage = () => {
         {/* <h1 className="sm:text-6xl w-full text-4xl font-bold text-slate-900 mt-6">
           LinkPlus.
         </h1> */}
-        <h1 className="sm:text-6xl w-full text-4xl font-bold text-slate-900 mt-5">
+        <h1 className="sm:text-5xl w-full text-4xl font-bold text-slate-900 mt-5">
           Supercharge Your LinkedIn in Seconds!
         </h1>
 
