@@ -14,6 +14,8 @@ class MyDocument extends Document {
           />
           <meta property="og:title" content="LinkPlus" />
           <meta name="image" property="og:image" content="/linkplushome.png" />
+          <meta name="author" content="Phani Sai Ram Munipalli" />
+          <meta property="og:type" content="Web Product" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="LinkPlus" />
           <meta
