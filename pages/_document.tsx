@@ -13,20 +13,21 @@ class MyDocument extends Document {
             content="Boost your LinkedIn in seconds!."
           />
           <meta property="og:title" content="LinkPlus" />
+          <meta name="image" property="og:image" content="/linkplushome.png" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="LinkPlus" />
           <meta
             name="twitter:description"
             content="Boost your LinkedIn Presence in seconds!"
           />
-          <meta
+          {/* <meta
             property="og:image"
             content="https://twitterbio.com/og-image.png"
           />
           <meta
             name="twitter:image"
             content="https://twitterbio.com/og-image.png"
-          />
+          /> */}
         </Head>
         <body>
           <Main />
