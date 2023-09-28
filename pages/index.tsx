@@ -40,7 +40,7 @@ const Home: NextPage = () => {
     bio.slice(-1) === "." ? "" : "."
   }`;
 
-  const conn_prompt = `You are reaching out to connect with a professional on LinkedIn who holds the position: ${vibe} you aspire to. Your goal is to establish a meaningful connection with a conversational tone, write 2 personalized connection request messages with maximum of 250 characters each clearly labeled "1." and "2." that not only introduces yourself but also highlights why you're interested in connecting with them. You can reference their LinkedIn headline or experience description here: ${bio}${
+  const conn_prompt = `You are reaching out to connect with a professional on LinkedIn who holds the position: ${vibe} you aspire to. Your goal is to establish a meaningful connection with a conversational tone, write 2 personalized connection request messages (without using hashtags) with maximum of 250 characters each clearly labeled "1." and "2." that not only introduces yourself but also highlights why you're interested in connecting with them. You can reference about my bio and their LinkedIn headline here: ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
@@ -174,11 +174,17 @@ const Home: NextPage = () => {
             />
             <p className="text-left font-medium">
               Description{" "}
-              <span className="text-slate-500">
+              {/* <span className="text-slate-500">
                 (For Headline: Write about your skill set and experience | For
                 Connection Request: Copy paste their headline)
+              </span> */}
+              <span className="text-slate-500">
+                <li>For Headline: Share about your experience & skillset.</li>
+                <li>
+                  For Connection Request: My skills are...and their headline
+                  is...
+                </li>
               </span>
-              .
             </p>
           </div>
           <textarea
