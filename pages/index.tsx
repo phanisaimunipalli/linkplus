@@ -11,12 +11,6 @@ import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-import TagManager from "react-gtm-module";
-const tagManagerArgs = {
-  gtmId: "GTM-NVZM3MSX",
-};
-TagManager.initialize(tagManagerArgs);
-
 const Home: NextPage = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [loading, setLoading] = useState(false);
@@ -33,16 +27,6 @@ const Home: NextPage = () => {
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  const gtmAnalyticsScript = `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5RVR17908"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-H5RVR17908');
-</script>`;
 
   // const prompt = `Write two articles in the style of a ${vibe} clearly labeled "1." and "2.". Make sure the generated text is less than 500 words and base it on this context: ${bio}${
   //   bio.slice(-1) === "." ? "" : "."
@@ -66,13 +50,6 @@ const Home: NextPage = () => {
     } else {
       setPrompt(conn_prompt);
     }
-
-    const script = document.createElement("script");
-    script.innerHTML = gtmAnalyticsScript;
-    document.head.appendChild(script);
-    return () => {
-      document.head.removeChild(script);
-    };
   }, [feature, bio, vibe]);
 
   const generateBio = async (e: any) => {
