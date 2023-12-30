@@ -11,9 +11,11 @@ function classNames(...classes: string[]) {
 }
 
 export type FeatureType =
-  | "Select the Feature"
-  | "LinkedIn Headline"
-  | "Connection Request";
+  | "How can I help you today?"
+  | "Generate Headline Based on my Skills"
+  | "Write a Personalzied DM for Networking"
+  | "Request for a Coffee-Chat"
+  | "Send a DM requesting for Referral";
 
 interface FeatureDropDownProps {
   feature: FeatureType;
@@ -21,9 +23,11 @@ interface FeatureDropDownProps {
 }
 
 let vibes: FeatureType[] = [
-  "Select the Feature",
-  "LinkedIn Headline",
-  "Connection Request",
+  "How can I help you today?",
+  "Generate Headline Based on my Skills",
+  "Write a Personalzied DM for Networking",
+  "Request for a Coffee-Chat",
+  "Send a DM requesting for Referral",
 ];
 
 export default function DropDown({

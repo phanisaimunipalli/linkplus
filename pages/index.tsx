@@ -17,7 +17,9 @@ const Home: NextPage = () => {
   const [bio, setBio] = useState("");
   const [prompt, setPrompt] = useState<String>("");
   const [vibe, setVibe] = useState<VibeType>("Target role:");
-  const [feature, setFeature] = useState<FeatureType>("Select the Feature");
+  const [feature, setFeature] = useState<FeatureType>(
+    "How can I help you today?"
+  );
   const [generatedBios, setGeneratedBios] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -36,27 +38,39 @@ const Home: NextPage = () => {
   //   bio.slice(-1) === "." ? "" : "."
   // }`;
 
-  const headline_prompt = `Act as a LinkedIn expert to enhance my LinkedIn presence. My goal is to attract recruiters and stand out in their search to land my target role of ${vibe}. Craft 2 creative and effective LinkedIn headlines with exactly 200 characters each clearly labeled "1." and "2." that incorporates relevant keywords and showcases my unique skills and experiences based on my bio: ${bio}${
+  const headline_prompt = `Create LinkedIn headline with 2 variants, each with exactly 200 characters each, for targeting the role of ${vibe}. The headlines should include relevant keywords to attract recruiters in the industry, reflect unique skills and experiences, and be crafted to stand out in recruiter searches. The headlines must be labeled '1.' and '2.' Tailore the message by using the individual's background detailed in ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
-  const conn_prompt = `You are reaching out to connect with a professional on LinkedIn who holds the position: ${vibe} you aspire to. Your goal is to establish a meaningful connection with a conversational tone, write 2 personalized connection request messages (without using hashtags) with maximum of 250 characters each clearly labeled "1." and "2." that not only introduces yourself but also highlights why you're interested in connecting with them. You can reference about my bio and their LinkedIn headline here: ${bio}${
+  const conn_prompt = `You are reaching out to connect with a professional on LinkedIn who holds the position: ${vibe} you aspire to. Your goal is to establish a meaningful connection with a conversational tone in less than 300 characters strictly, write 2 personalized connection request messages (without using hashtags) with maximum of 300 characters each clearly labeled "1." and "2." that not only introduces yourself but also highlights why you're interested in connecting with them. You can reference about my bio and their LinkedIn headline here: ${bio}${
+    bio.slice(-1) === "." ? "" : "."
+  }`;
+
+  const coffee_prompt = `Generate two professional and courteous messages, maximum of 200 characters strictly, clearly labeled '1.' and '2.', to request a 15-minute coffee chat. The messages should reflect the requester's aspirations in ${vibe} and express a genuine interest in learning from a their experiences. They should be concise, polite, and clear in purpose, with a flexible tone to accommodate the recipient's schedule. Begin each message with a brief introduction of the requester, using details from ${bio}${
+    bio.slice(-1) === "." ? "" : "."
+  }`;
+
+  const ref_prompt = `Generate two respectful and persuasive messages (clearly labeled '1.' and '2.', in less than 200 characters strictly each) to request a job referral at [company]. The message should start with a brief introduction, highlighting my skills match with target role: ${vibe}. Make it conversationa, spartan. Emphasize key achievements and value I will bring to the target position, using the information provided in ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
   useEffect(() => {
-    if (feature === "LinkedIn Headline") {
+    if (feature === "Generate Headline Based on my Skills") {
       setPrompt(headline_prompt);
-    } else {
+    } else if (feature === "Write a Personalzied DM for Networking") {
       setPrompt(conn_prompt);
+    } else if (feature === "Request for a Coffee-Chat") {
+      setPrompt(coffee_prompt);
+    } else {
+      setPrompt(ref_prompt);
     }
   }, [feature, bio, vibe]);
 
   const generateBio = async (e: any) => {
     e.preventDefault();
 
-    if (feature === "Select the Feature") {
-      toast("Please select the feature you want!", {
+    if (feature === "How can I help you today?") {
+      toast("How can I help you today?", {
         icon: "🛑",
       });
       return;
@@ -181,8 +195,9 @@ const Home: NextPage = () => {
               <span className="text-slate-500">
                 <br />
                 • For Headline: Share about your experience & skillset. <br />
-                • For Connection Request: My skills are...and their headline
-                is...
+                • For Networking: My skills are...and their headline <br />
+                • For Coffe Chat: Share about your interests or projects <br />•
+                For Referral: Share the value you will add to the position.
               </span>
             </p>
           </div>
