@@ -133,7 +133,7 @@ const Home: NextPage = () => {
           LinkPlus.
         </h1> */}
         <h1 className="sm:text-5xl w-full text-4xl font-bold text-slate-900 mt-5">
-          Supercharge Your LinkedIn <br />
+          10x Your LinkedIn <br />
           in Seconds!
         </h1>
 
@@ -179,11 +179,10 @@ const Home: NextPage = () => {
                 Connection Request: Copy paste their headline)
               </span> */}
               <span className="text-slate-500">
-                <li>For Headline: Share about your experience & skillset.</li>
-                <li>
-                  For Connection Request: My skills are...and their headline
-                  is...
-                </li>
+                <br />
+                • For Headline: Share about your experience & skillset. <br />
+                • For Connection Request: My skills are...and their headline
+                is...
               </span>
             </p>
           </div>
