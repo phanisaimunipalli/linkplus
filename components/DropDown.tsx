@@ -14,12 +14,16 @@ export type VibeType =
   | "Target role:"
   | "Software Engineer"
   | "Product Manager"
-  | "Electrical Engineer"
-  | "Sales Engineer"
+  | "Data Analyst"
+  | "Data Engineer"
+  | "Data Scientist"
   | "Technical Product Manager"
-  | "Cloud Solutions Engineer"
+  | "Cloud Engineer"
   | "Solutions Architect"
-  | "Marketing Manager";
+  | "Marketing Manager"
+  | "Program Manager"
+  | "Electrical Engineer"
+  | "Sales Engineer";
 
 interface DropDownProps {
   vibe: VibeType;
@@ -30,12 +34,16 @@ let vibes: VibeType[] = [
   "Target role:",
   "Software Engineer",
   "Product Manager",
-  "Electrical Engineer",
-  "Sales Engineer",
+  "Data Analyst",
+  "Data Engineer",
+  "Data Scientist",
   "Technical Product Manager",
-  "Cloud Solutions Engineer",
+  "Cloud Engineer",
   "Solutions Architect",
   "Marketing Manager",
+  "Program Manager",
+  "Electrical Engineer",
+  "Sales Engineer",
 ];
 
 export default function DropDown({ vibe, setVibe }: DropDownProps) {
