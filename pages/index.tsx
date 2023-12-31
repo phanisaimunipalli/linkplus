@@ -195,9 +195,10 @@ const Home: NextPage = () => {
               <span className="text-slate-500">
                 <br />
                 • For Headline: Share about your experience & skillset. <br />
-                • For Networking: My skills are...and their headline <br />
-                • For Coffe Chat: Share about your interests or projects <br />•
-                For Referral: Share the value you will add to the position.
+                • For Networking: My skills are...and their headline is...
+                <br />
+                • For Coffee Chat: Share about your interests or projects <br />
+                • For Referral: Share the value you will add to the position.
               </span>
             </p>
           </div>

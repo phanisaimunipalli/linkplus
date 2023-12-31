@@ -22,7 +22,7 @@ export default function Footer() {
         >
           ChatGPT{" "}
         </a>
-        and{" "}
+        {/* and{" "}
         <a
           href="https://vercel.com/"
           target="_blank"
@@ -30,9 +30,10 @@ export default function Footer() {
           className="font-bold hover:underline transition underline-offset-2"
         >
           Vercel Edge Functions.
-        </a>
+        </a> */}
       </div>
       <div className="flex space-x-4 pb-4 sm:pb-0">
+        Feedback? &nbsp;
         <Link
           href="https://linkedin.com/in/iamphanisairam"
           className="group"

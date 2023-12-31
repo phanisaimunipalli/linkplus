@@ -10,6 +10,7 @@
     "@headlessui/react": "^1.7.7",
     "@headlessui/tailwindcss": "^0.1.2",
     "@heroicons/react": "^2.0.13",
+    "@hotjar/browser": "^1.0.9",
     "@tailwindcss/forms": "^0.5.3",
     "@vercel/analytics": "^0.1.11",
     "eventsource-parser": "^0.0.5",
@@ -20,6 +21,7 @@
     "react-gtm-module": "^2.0.11",
     "react-hook-form": "^7.42.0",
     "react-hot-toast": "^2.4.0",
+    "react-hotjar": "^6.2.0",
     "react-use-measure": "^2.1.1"
   },
   "devDependencies": {
