@@ -16,20 +16,17 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [prompt, setPrompt] = useState<String>("");
-  const [vibe, setVibe] = useState<string>(" ");
+  const [vibe, setVibe] = useState<VibeType>("Target role:");
   const [feature, setFeature] = useState<FeatureType>(
     "How can I help you today?"
   );
   const [generatedBios, setGeneratedBios] = useState<String>("");
   const [dynamicMessage, setDynamicMessage] = useState("");
-  const [language, setLanguage] = useState("English");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
-  const languages = ["English", "Spanish"];
 
   const scrollToBios = () => {
     if (bioRef.current !== null) {
-      // console.log("Scrolling to bioRef element"); // Debugging log
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -42,11 +39,7 @@ const Home: NextPage = () => {
   //   bio.slice(-1) === "." ? "" : "."
   // }`;
 
-  const about_prompt = `You are the world's leading LinkedIn expert with decade of experience in capturing recruiters' attention, write LinkedIn About section in a narrative style, with a maximum of 2000 characters for targeting the role of ${vibe}. The About section should be authentic, reflect unique skills and experiences, and stand out to recruiters. Tailor the message by using the individual's background detailed in: ${bio}${
-    bio.slice(-1) === "." ? "" : "."
-  }`;
-
-  const headline_prompt = `You are the world's leading LinkedIn expert, create LinkedIn headline with 2 variants, each with exactly 200 characters each, for targeting the role of ${vibe}. The headlines should include relevant keywords to attract recruiters in the industry, reflect unique skills and experiences, and be crafted to stand out in recruiter searches. The headlines must be labeled '1.' and '2.' Tailore the message by using the individual's background detailed in ${bio}${
+  const headline_prompt = `Create LinkedIn headline with 2 variants, each with exactly 200 characters each, for targeting the role of ${vibe}. The headlines should include relevant keywords to attract recruiters in the industry, reflect unique skills and experiences, and be crafted to stand out in recruiter searches. The headlines must be labeled '1.' and '2.' Tailore the message by using the individual's background detailed in ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
@@ -54,43 +47,23 @@ const Home: NextPage = () => {
     bio.slice(-1) === "." ? "" : "."
   }`;
 
+  const coffee_prompt = `Generate two professional and courteous messages, maximum of 200 characters strictly, clearly labeled '1.' and '2.', to request a 15-minute coffee chat. The messages should reflect the requester's aspirations in ${vibe} and express a genuine interest in learning from a their experiences. They should be concise, polite, and clear in purpose, with a flexible tone to accommodate the recipient's schedule. Begin each message with a brief introduction of the requester, using details from ${bio}${
+    bio.slice(-1) === "." ? "" : "."
+  }`;
+
   const ref_prompt = `Generate two respectful and persuasive messages (clearly labeled '1.' and '2.', in less than 200 characters strictly each) to request a job referral at [company]. The message should start with a brief introduction, highlighting my skills match with target role: ${vibe}. Make it conversationa, spartan. Emphasize key achievements and value I will bring to the target position, using the information provided in ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
-  const getCoffeePrompt = (vibe: string, bio: string, language: string) => {
-    if (language === "Spanish") {
-      console.log("language is selected: ", language);
-      return `Generate two professional and courteous messages in ${language} language, maximum of 200 characters strictly, clearly labeled '1.' and '2.', to request a 15-minute coffee chat. The messages should reflect the requester's aspirations in ${vibe} and express a genuine interest in learning from a their experiences. They should be concise, polite, and clear in purpose, with a flexible tone to accommodate the recipient's schedule. Begin each message with a brief introduction of the requester, using details from ${bio}${
-        bio.slice(-1) === "." ? "" : "."
-      }`;
-    }
-    // Default to English
-    return `Generate two professional and courteous messages, maximum of 200 characters strictly, clearly labeled '1.' and '2.', to request a 15-minute coffee chat. The messages should reflect the requester's aspirations in ${vibe} and express a genuine interest in learning from a their experiences. They should be concise, polite, and clear in purpose, with a flexible tone to accommodate the recipient's schedule. Begin each message with a brief introduction of the requester, using details from ${bio}${
-      bio.slice(-1) === "." ? "" : "."
-    }`;
-  };
-
-  // Similar functions for other prompts can be created here
-
   useEffect(() => {
     if (feature === "Generate Headline Based on my Skills") {
       setPrompt(headline_prompt);
-      setDynamicMessage("Share about your experience & skillset.");
     } else if (feature === "Write a Personalzied DM for Networking") {
       setPrompt(conn_prompt);
-      setDynamicMessage("My skills are...and their headline is...");
     } else if (feature === "Request for a Coffee-Chat") {
-      setPrompt(getCoffeePrompt(vibe, bio, language));
-      setDynamicMessage("Share about your interests or projects.");
-    } else if (feature == "Send a DM requesting for Referral") {
+      setPrompt(coffee_prompt);
+    } else {
       setPrompt(ref_prompt);
-      setDynamicMessage("Share the value you will add to the position.");
-    } else if (feature === "Write LinkedIn About Section") {
-      setPrompt(about_prompt);
-      setDynamicMessage(
-        "Write about your skills, experience or what makes you stand out."
-      );
     }
   }, [feature, bio, vibe]);
 
@@ -104,7 +77,7 @@ const Home: NextPage = () => {
       return;
     }
     if (vibe == "Target role:") {
-      toast("What's your target role?", {
+      toast("Please select your target role!", {
         icon: "🛑",
       });
       return;
@@ -149,9 +122,8 @@ const Home: NextPage = () => {
       const chunkValue = decoder.decode(value);
       setGeneratedBios((prev) => prev + chunkValue);
     }
-    setLoading(false);
-    // console.log("Generated bios:", generatedBios); // Debugging log
     scrollToBios();
+    setLoading(false);
   };
 
   return (
@@ -198,25 +170,12 @@ const Home: NextPage = () => {
           </div>
 
           {/* Target role */}
-          {/* <div className="flex my-8 items-center space-x-3">
+          <div className="flex my-8 items-center space-x-3">
             <Image src="/1-black.png" width={30} height={30} alt="1 icon" />
             <p className="text-left font-medium">Select target role.</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
-          </div> */}
-          <div className="flex my-8 items-center space-x-2">
-            <Image src="/1-black.png" width={20} height={20} alt="1 icon" />
-            <p className="text-left font-medium">What's your target role?</p>
-          </div>
-          <div className="block">
-            <input
-              type="text"
-              value={vibe}
-              onChange={(e) => setVibe(e.target.value)}
-              className="w-full rounded-md border-gray-500 shadow-md focus:border-black focus:ring-black my-5"
-              placeholder="Eg: Full Stack Software Engineer"
-            />
           </div>
 
           {/* description */}
@@ -234,8 +193,14 @@ const Home: NextPage = () => {
                 (For Headline: Write about your skill set and experience | For
                 Connection Request: Copy paste their headline)
               </span> */}
-              <br />
-              <span className="text-slate-500">{dynamicMessage}</span>
+              <span className="text-slate-500">
+                <br />
+                • For Headline: Share about your experience & skillset. <br />
+                • For Networking: My skills are...and their headline is...
+                <br />
+                • For Coffee Chat: Share about your interests or projects <br />
+                • For Referral: Share the value you will add to the position.
+              </span>
             </p>
           </div>
           <textarea
@@ -243,7 +208,9 @@ const Home: NextPage = () => {
             onChange={(e) => setBio(e.target.value)}
             rows={4}
             className="w-full rounded-md border-gray-500 shadow-md focus:border-black focus:ring-black my-5"
-            placeholder={""}
+            placeholder={
+              "Eg: Machine Learning enthusiast with 2+ years of experience in eCommerce."
+            }
             required
           />
 
@@ -273,8 +240,11 @@ const Home: NextPage = () => {
         <div className="space-y-10 my-10">
           {generatedBios && (
             <>
-              <div ref={bioRef}>
-                <h2 className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto">
+              <div>
+                <h2
+                  className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
+                  ref={bioRef}
+                >
                   Boost Your LinkedIn Presence!
                 </h2>
               </div>

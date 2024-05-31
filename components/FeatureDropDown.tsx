@@ -15,7 +15,8 @@ export type FeatureType =
   | "Generate Headline Based on my Skills"
   | "Write a Personalzied DM for Networking"
   | "Request for a Coffee-Chat"
-  | "Send a DM requesting for Referral";
+  | "Send a DM requesting for Referral"
+  | "Write LinkedIn About Section";
 
 interface FeatureDropDownProps {
   feature: FeatureType;
@@ -28,6 +29,7 @@ let vibes: FeatureType[] = [
   "Write a Personalzied DM for Networking",
   "Request for a Coffee-Chat",
   "Send a DM requesting for Referral",
+  "Write LinkedIn About Section",
 ];
 
 export default function DropDown({
