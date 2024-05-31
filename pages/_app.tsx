@@ -12,9 +12,9 @@ import { hotjar } from "react-hotjar";
 // Hotjar.init(siteId, hotjarVersion);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    hotjar.initialize(3809852, 6);
-  }, []);
+  // useEffect(() => {
+  //   hotjar.initialize(3809852, 6);
+  // }, []);
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey="{process.env.reCAPTCHA_Site_key}"
