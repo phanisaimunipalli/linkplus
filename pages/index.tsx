@@ -176,7 +176,7 @@ const Home: NextPage = () => {
           LinkPlus.
         </h1> */}
         <h1 className="sm:text-5xl w-full text-4xl font-bold text-slate-900 mt-5">
-          10x Your LinkedIn <br />
+          10x Your LinkedIn with GPT-4o <br />
           in Seconds!
         </h1>
 
