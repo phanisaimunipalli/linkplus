@@ -220,11 +220,11 @@ const Home: NextPage = () => {
           </div>
 
           {/* description */}
-          <div className="flex mt-10 items-center space-x-3">
+          <div className="flex mt-10 items-center space-x-2">
             <Image
               src="/2-black.png"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
               alt="1 icon"
               className="mb-5 sm:mb-0"
             />
