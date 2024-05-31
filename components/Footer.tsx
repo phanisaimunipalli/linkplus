@@ -20,7 +20,7 @@ export default function Footer() {
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"
         >
-          ChatGPT-4o{" "}
+          GPT-4o{" "}
         </a>
         {/* and{" "}
         <a
